@@ -20,7 +20,6 @@ class MainWindow(QtGui.QMainWindow):
 
         self.settings = QtCore.QSettings('Adresseprinter')
         self.dir = self.settings.value('pdf_dir')
-        print(self.dir)
 
         self.file = codecs.open('template.html')
         self.html_template = self.file.read().decode('utf-8')
