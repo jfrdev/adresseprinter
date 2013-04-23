@@ -1,5 +1,5 @@
 # About
-The program searches and prints addresses from the UCPH address book: [http://www.ku.dk/vejviser/]
+The program searches and prints addresses from the UCPH address book: http://www.ku.dk/vejviser/
 
 # Todo
 * [ ] Use a QValidator (regexp) on the case QLineEdit
