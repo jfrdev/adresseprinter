@@ -5,7 +5,7 @@ The program searches and prints addresses from the UCPH address book: http://www
 * Some addresses does not show correctly (e.g. Daniel Noesgaard which becomes one line and with an extra newline afterwards)
 
 # Todo
-* [ ] Use a QValidator (regexp) on the case QLineEdit
+* [x] Use a QValidator (regexp) on the case QLineEdit
 * [ ] Allow the print menu to appear on clicking enter in the list
 * [ ] Allow the use of alt-button to choose element
 * [x] Mark and select the first element (if any) in the list
