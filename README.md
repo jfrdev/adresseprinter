@@ -8,8 +8,8 @@ The program searches and prints addresses from the UCPH address book: http://www
 * [ ] Use a QValidator (regexp) on the case QLineEdit
 * [ ] Allow the print menu to appear on clicking enter in the list
 * [ ] Allow the use of alt-button to choose element
-* [ ] Mark and select the first element (if any) in the list
-* [ ] Improve the settings to show which folder i currently selected
+* [x] Mark and select the first element (if any) in the list
+* [x] Improve the settings to show which folder is currently selected
 * [ ] Run the GUI in a seperate thread to avoid freezing when searching
 * [ ] Create an installer for the program
 * [ ] Add an icon
