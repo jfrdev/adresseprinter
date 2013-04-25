@@ -2,7 +2,7 @@
 The program searches and prints addresses from the UCPH address book: http://www.ku.dk/vejviser/
 
 # Bugs
-* <s>Some addresses does not show correctly (e.g. Daniel Noesgaard which becomes one line and with an extra newline afterwards)</s>
+* ~~Some addresses does not show correctly (e.g. Daniel Noesgaard which becomes one line and with an extra newline afterwards)~~
     * Not completely fixed but since the error lies with the user using the address field wrong, nothing more can be done
     * Newlines are removed
     * Addresses containing a comma will be kept that way since we have no way of knowing wheter it was intentional or a mistake
