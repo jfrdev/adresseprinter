@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
             self.ui.contactList.setCurrentRow(0)
 
     def clear_search(self):
-        self.ui.nameText.clear(),q
+        self.ui.nameText.clear(),
         self.ui.deptText.clear(),
         self.ui.phoneText.clear(),
         self.ui.emailText.clear(),

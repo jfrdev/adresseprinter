@@ -65,15 +65,6 @@ def _parse_contacts(raw):
     lines_res = []
 
     for line in lines:
-        if 'Adresse' in line:
-            address = line.split(':')[1].strip()
-            line = next(lines)
-
-            while line.startswith(':'):
-                address = address + ' : ' + line.split(':')[1].strip()
-                line = next(lines)
-            lines_res[n]['Adresse'] = address
-
         if 'Navn' in line:
             n = len(lines_res)
             name = line.split(':')[1].strip()
@@ -82,6 +73,16 @@ def _parse_contacts(raw):
             lines_res[n]['Lokation'] = ''
             lines_res[n]['Afdeling'] = ''
             lines_res[n]['Telefon'] = ''
+
+        if 'Adresse' in line:
+            address = line.split(':')[1].strip()
+            line = next(lines)
+
+            while line.startswith(':'):
+                tmp = line.split(':')[1].strip()
+                address = address + ' : ' + tmp if len(tmp) > 0 else address
+                line = next(lines)
+            lines_res[n]['Adresse'] = address
 
         elif ('Lokation' in line) or \
              ('Afdeling' in line) or \
