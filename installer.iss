@@ -5,18 +5,17 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{BF6DD729-2638-418F-A802-C4B4826E1808}
+AppId={{FB135B94-8672-44B6-B98D-2954F55F248D}
 AppName=Adresseprinter
 AppVersion=0.3
 ;AppVerName=Adresseprinter 0.3
 AppPublisher=jfrdev
-AppPublisherURL=https://github.com/jfrdev/adresseprinter
-AppSupportURL=https://github.com/jfrdev/adresseprinter
-AppUpdatesURL=https://github.com/jfrdev/adresseprinter
+AppPublisherURL=https://github.com/jfrdev/adresseprinter/
+AppSupportURL=https://github.com/jfrdev/adresseprinter/
+AppUpdatesURL=https://github.com/jfrdev/adresseprinter/
 DefaultDirName={pf}\Adresseprinter
 DefaultGroupName=Adresseprinter
-AllowNoIcons=yes
-OutputBaseFilename=setup
+OutputBaseFilename=setup_v0.3
 Compression=lzma
 SolidCompression=yes
 
@@ -27,28 +26,8 @@ Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\wrapper.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\gui.ui"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\LIBEAY32.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\library.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\pyexpat.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\PyQt4.QtCore.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\PyQt4.QtGui.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\PyQt4.QtNetwork.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\PyQt4.QtWebKit.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\python32.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\QtNetwork4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\QtWebKit4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\sip.pyd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\SSLEAY32.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\template.html"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\adresseprinter\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\wrapper.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -1,14 +1,15 @@
 import sys
 import os
 import codecs
-from PyQt4 import QtCore, QtGui, QtNetwork, QtWebKit, uic
+from PySide import QtCore, QtGui, QtNetwork, QtWebKit
+from PySide.QtUiTools import QUiLoader
 
 import address_book
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self.ui = uic.loadUi('data/gui.ui', self)
+        self.ui = QUiLoader().load('data/gui.ui', self)
         self.contacts = {}
         self.webpage = QtWebKit.QWebPage()
         self.document = self.webpage.mainFrame()

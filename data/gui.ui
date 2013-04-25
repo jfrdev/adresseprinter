@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>857</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Adresseprinter</string>
+  </property>
+  <widget class="QWidget" name="mainLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QFrame" name="searchFrame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Navn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="nameText"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="deptLabel">
+         <property name="text">
+          <string>Afdeling</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="deptText"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="phoneLabel">
+         <property name="text">
+          <string>Telefon</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="phoneText"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="emailLabel">
+         <property name="text">
+          <string>Email</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="emailText"/>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="funcLabel">
+         <property name="text">
+          <string>Funktion</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="funcText"/>
+       </item>
+       <item row="9" column="1">
+        <widget class="QPushButton" name="searchButton">
+         <property name="text">
+          <string>Søg</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="resultFrame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="1" colspan="3">
+        <widget class="QPushButton" name="printButton">
+         <property name="text">
+          <string>Print</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="caseText"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QComboBox" name="caseBox">
+         <item>
+          <property name="text">
+           <string>SD</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>WO</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>IM</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
+        <widget class="QListWidget" name="contactList">
+         <property name="styleSheet">
+          <string notr="true">border-bottom: 1px dashed;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+      <zorder>caseText</zorder>
+      <zorder>printButton</zorder>
+      <zorder>contactList</zorder>
+      <zorder>caseBox</zorder>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>857</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Indstillinger</string>
+    </property>
+    <addaction name="actionPDF"/>
+   </widget>
+   <addaction name="menuSettings"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionPDF">
+   <property name="text">
+    <string>Vælg PDF-folder</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>nameText</tabstop>
+  <tabstop>deptText</tabstop>
+  <tabstop>phoneText</tabstop>
+  <tabstop>emailText</tabstop>
+  <tabstop>funcText</tabstop>
+  <tabstop>searchButton</tabstop>
+  <tabstop>caseBox</tabstop>
+  <tabstop>caseText</tabstop>
+  <tabstop>contactList</tabstop>
+  <tabstop>printButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -11,6 +11,6 @@ setup(
     name = "Adresseprinter",
     version = "0.2",
     description = "Adresseprinter",
-    options = {"build_exe" : {"include_files" : ["template.html", "gui.ui"]}},
-    executables = [Executable(script = "wrapper.py", base = base)]
+    options = {"build_exe" : {"include_files" : ["data/template.html", "data/gui.ui"]}},
+    executables = [Executable(script="wrapper.py", icon="data/icon.ico", base=base)]
     )
