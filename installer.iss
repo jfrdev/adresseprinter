@@ -7,15 +7,15 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{FB135B94-8672-44B6-B98D-2954F55F248D}
 AppName=Adresseprinter
-AppVersion=0.3
-;AppVerName=Adresseprinter 0.3
+AppVersion=0.4
+;AppVerName=Adresseprinter 0.4
 AppPublisher=jfrdev
 AppPublisherURL=https://github.com/jfrdev/adresseprinter/
 AppSupportURL=https://github.com/jfrdev/adresseprinter/
 AppUpdatesURL=https://github.com/jfrdev/adresseprinter/
 DefaultDirName={pf}\Adresseprinter
 DefaultGroupName=Adresseprinter
-OutputBaseFilename=setup_v0.3
+OutputBaseFilename=setup_v0.4
 Compression=lzma
 SolidCompression=yes
 

@@ -9,8 +9,8 @@ if sys.platform == "win32":
 
 setup(
     name = "Adresseprinter",
-    version = "0.2",
+    version = "0.4",
     description = "Adresseprinter",
     options = {"build_exe" : {"include_files" : ["data/template.html", "data/gui.ui"]}},
-    executables = [Executable(script="wrapper.py", icon="data/icon.ico", base=base)]
+    executables = [Executable(script="wrapper_pyside.py", icon="data/icon.ico", base=base)]
     )

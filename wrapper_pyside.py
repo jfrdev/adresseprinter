@@ -1,64 +1,94 @@
 import sys
 import os
 import codecs
-from PySide import QtCore, QtGui, QtNetwork, QtWebKit
+
+from PySide import QtNetwork, QtCore, QtGui, QtXml
+from PySide.QtCore import Slot, QMetaObject, QSettings, QRegExp, QObject
+from PySide.QtUiTools import QUiLoader
+from PySide.QtGui import QApplication, QMainWindow, QPrinter, QRegExpValidator, QFileDialog, QPrintDialog, QDialog, qApp
+from PySide.QtWebKit import QWebPage
 from PySide.QtUiTools import QUiLoader
 
 import address_book
 
-class MainWindow(QtGui.QWidget):
+class UiLoader(QUiLoader):
+    def __init__(self, baseinstance):
+        QUiLoader.__init__(self, baseinstance)
+        self.baseinstance = baseinstance
+
+    def createWidget(self, class_name, parent=None, name=''):
+        if parent is None and self.baseinstance:
+            # supposed to create the top-level widget, return the base instance
+            # instead
+            return self.baseinstance
+        else:
+            # create a new widget for child widgets
+            widget = QUiLoader.createWidget(self, class_name, parent, name)
+            if self.baseinstance:
+                # set an attribute for the new child widget on the base
+                # instance, just like PyQt4.uic.loadUi does.
+                setattr(self.baseinstance, name, widget)
+            return widget
+
+def loadUi(uifile, baseinstance=None):
+    loader = UiLoader(baseinstance)
+    widget = loader.load(uifile)
+    QMetaObject.connectSlotsByName(widget)
+    return widget
+
+class MainWindow(QMainWindow):
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.ui = QUiLoader().load('data/gui.ui', self)
+        QMainWindow.__init__(self, parent)
+        self.ui = loadUi('data/gui.ui', self)
         self.contacts = {}
-        self.webpage = QtWebKit.QWebPage()
+        self.webpage = QWebPage()
         self.document = self.webpage.mainFrame()
-        self.printer = QtGui.QPrinter()
-        self.printer.setPageMargins(20,20,20,20,QtGui.QPrinter.Millimeter)
+        self.printer = QPrinter()
+        self.printer.setPageMargins(20, 20, 20, 20, QPrinter.Millimeter)
 
-        self.pdf = QtGui.QPrinter()
-        self.pdf.setPageMargins(20,20,20,20,QtGui.QPrinter.Millimeter)
-        self.pdf.setOutputFormat(QtGui.QPrinter.PdfFormat)
+        self.pdf = QPrinter()
+        self.pdf.setPageMargins(20, 20, 20, 20, QPrinter.Millimeter)
+        self.pdf.setOutputFormat(QPrinter.PdfFormat)
 
-        self.settings = QtCore.QSettings('Adresseprinter')
-        self.dir = self.settings.value('pdf_dir')
+        self.settings = QSettings('Adresseprinter')
+        self.dir = self.settings.value('pdf_dir', os.path.expanduser('~') + os.sep + 'Desktop' + os.sep)
         self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
 
         self.file = codecs.open('data/template.html')
         self.html_template = self.file.read().decode('utf-8')
         self.file.close()
 
-        self.regex = QtCore.QRegExp("\d*")
-        self.validator=QtGui.QRegExpValidator(self.regex, self.ui.caseText)
+        self.regex = QRegExp("\d*")
+        self.validator = QRegExpValidator(self.regex, self.ui.caseText)
 
         self.ui.caseText.setValidator(self.validator)
 
         self.addSignals()
 
     def addSignals(self):
-        QtCore.QObject.connect(self.ui.searchButton,
+        QObject.connect(self.ui.searchButton,
                 QtCore.SIGNAL('clicked()'), self.search)
-        QtCore.QObject.connect(self.ui.nameText,
+        QObject.connect(self.ui.nameText,
                 QtCore.SIGNAL("returnPressed()"), self.search)
-        QtCore.QObject.connect(self.ui.deptText,
+        QObject.connect(self.ui.deptText,
                 QtCore.SIGNAL("returnPressed()"), self.search)
-        QtCore.QObject.connect(self.ui.phoneText,
+        QObject.connect(self.ui.phoneText,
                 QtCore.SIGNAL("returnPressed()"), self.search)
-        QtCore.QObject.connect(self.ui.emailText,
+        QObject.connect(self.ui.emailText,
                 QtCore.SIGNAL("returnPressed()"), self.search)
-        QtCore.QObject.connect(self.ui.funcText,
+        QObject.connect(self.ui.funcText,
                 QtCore.SIGNAL("returnPressed()"), self.search)
 
-        QtCore.QObject.connect(self.ui.actionPDF,
+        QObject.connect(self.ui.actionPDF,
                 QtCore.SIGNAL('triggered()'), self.setPdfDir)
 
-        QtCore.QObject.connect(self.ui.printButton,
+        QObject.connect(self.ui.printButton,
                 QtCore.SIGNAL('clicked()'), self.print)
-        QtCore.QObject.connect(self.ui.caseText,
+        QObject.connect(self.ui.caseText,
                 QtCore.SIGNAL("returnPressed()"), self.print)
 
     def setPdfDir(self):
-        self.dir = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
+        self.dir = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
         self.settings.setValue('pdf_dir', self.dir)
         self.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
 
@@ -71,8 +101,8 @@ class MainWindow(QtGui.QWidget):
             self.ui.caseText.text()
             )
         self.document.setHtml(html)
-        dialog = QtGui.QPrintDialog(self.printer, self)
-        if(dialog.exec_() == QtGui.QDialog.Accepted):
+        dialog = QPrintDialog(self.printer, self)
+        if(dialog.exec_() == QDialog.Accepted):
             self.pdf.setOutputFileName(
                 self.dir +
                 os.sep +
@@ -96,7 +126,7 @@ class MainWindow(QtGui.QWidget):
             self.ui.contactList.setCurrentRow(0)
 
     def clear_search(self):
-        self.ui.nameText.clear(),
+        self.ui.nameText.clear(),q
         self.ui.deptText.clear(),
         self.ui.phoneText.clear(),
         self.ui.emailText.clear(),
@@ -113,7 +143,7 @@ class MainWindow(QtGui.QWidget):
                 'Telefon: ' + contact['Telefon'])
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     QtGui.qApp = app
     myapp = MainWindow()
     myapp.show()

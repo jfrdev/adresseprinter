@@ -20,7 +20,7 @@ class MainWindow(QtGui.QMainWindow):
         self.pdf.setOutputFormat(QtGui.QPrinter.PdfFormat)
 
         self.settings = QtCore.QSettings('Adresseprinter')
-        self.dir = self.settings.value('pdf_dir')
+        self.dir = self.settings.value('pdf_dir', '')
         self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
 
         self.file = codecs.open('data/template.html')
