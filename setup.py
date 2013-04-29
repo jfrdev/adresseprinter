@@ -12,5 +12,5 @@ setup(
     version = "0.4",
     description = "Adresseprinter",
     options = {"build_exe" : {"include_files" : ["data/template.html", "data/gui.ui"]}},
-    executables = [Executable(script="wrapper_pyside.py", icon="data/icon.ico", base=base)]
+    executables = [Executable(script="MainWindow.py", icon="data/icon.ico", base=base)]
     )

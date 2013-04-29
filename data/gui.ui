@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>Adresseprinter</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>icon.ico</normaloff>icon.ico</iconset>
-  </property>
   <widget class="QWidget" name="mainLayout">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>

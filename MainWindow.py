@@ -1,37 +1,31 @@
 import sys
 import os
 import codecs
-from PyQt4 import QtCore, QtGui, QtNetwork, QtWebKit, uic
 
-import address_book
+from PySide import QtNetwork, QtCore, QtGui, QtXml, QtWebKit
+
+import UiLoader
+import AddressBook
+import Printer
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.ui = uic.loadUi('data/gui.ui', self)
-        self.contacts = {}
         self.webpage = QtWebKit.QWebPage()
         self.document = self.webpage.mainFrame()
-        self.printer = QtGui.QPrinter()
-        self.printer.setPageMargins(20,20,20,20,QtGui.QPrinter.Millimeter)
-
-        self.pdf = QtGui.QPrinter()
-        self.pdf.setPageMargins(20,20,20,20,QtGui.QPrinter.Millimeter)
-        self.pdf.setOutputFormat(QtGui.QPrinter.PdfFormat)
-
         self.settings = QtCore.QSettings('Adresseprinter')
-        self.dir = self.settings.value('pdf_dir', '')
-        self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
+        self.dir = self.settings.value('pdf_dir', os.path.expanduser('~') + os.sep + 'Desktop')
+        self.contacts = {}
+        self.printer = Printer.Printer()
+        self.addressbook = AddressBook.AddressBook()
 
         self.file = codecs.open('data/template.html')
         self.html_template = self.file.read().decode('utf-8')
         self.file.close()
 
-        self.regex = QtCore.QRegExp("\d*")
-        self.validator=QtGui.QRegExpValidator(self.regex, self.ui.caseText)
-
-        self.ui.caseText.setValidator(self.validator)
-
+        QtGui.QMainWindow.__init__(self, parent)
+        self.ui = UiLoader.loadUi('data/gui.ui', self)
+        self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
+        self.ui.caseText.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp("\d*")))
         self.addSignals()
 
     def addSignals(self):
@@ -52,57 +46,52 @@ class MainWindow(QtGui.QMainWindow):
                 QtCore.SIGNAL('triggered()'), self.setPdfDir)
 
         QtCore.QObject.connect(self.ui.printButton,
-                QtCore.SIGNAL('clicked()'), self.print)
+                QtCore.SIGNAL('clicked()'), self.printAddress)
         QtCore.QObject.connect(self.ui.caseText,
-                QtCore.SIGNAL("returnPressed()"), self.print)
+                QtCore.SIGNAL("returnPressed()"), self.printAddress)
 
     def setPdfDir(self):
         self.dir = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
         self.settings.setValue('pdf_dir', self.dir)
-        self.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
+        self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
 
-    def print(self):
+    def printAddress(self):
         index = self.ui.contactList.currentRow()
-        html = address_book.print_contact(
+        html = self.addressbook.printContact(
             self.contacts[index],
             self.html_template,
             self.ui.caseBox.currentText(),
             self.ui.caseText.text()
             )
         self.document.setHtml(html)
-        dialog = QtGui.QPrintDialog(self.printer, self)
-        if(dialog.exec_() == QtGui.QDialog.Accepted):
-            self.pdf.setOutputFileName(
-                self.dir +
-                os.sep +
-                self.ui.caseBox.currentText() +
-                self.ui.caseText.text() +
-                '.pdf')
-            self.document.print(self.pdf)
-            self.document.print(self.printer)
+        self.printer.print(self.document,
+                           self.dir +
+                           os.sep +
+                           self.ui.caseBox.currentText() +
+                           self.ui.caseText.text() +
+                           '.pdf')
 
     def search(self):
-        self.contacts = address_book.get_contacts(
+        self.contacts = self.addressbook.getContacts(
                         self.ui.nameText.text(),
                         self.ui.deptText.text(),
                         self.ui.phoneText.text(),
                         self.ui.emailText.text(),
                         self.ui.funcText.text()
                         )
-        self.clear_search()
-        self.draw_list()
+        self.clearSearch()
+        self.drawList()
         if self.ui.contactList.count() > 0:
             self.ui.contactList.setCurrentRow(0)
 
-    def clear_search(self):
-        self.ui.nameText.clear(),
-        self.ui.deptText.clear(),
-        self.ui.phoneText.clear(),
-        self.ui.emailText.clear(),
+    def clearSearch(self):
+        self.ui.nameText.clear()
+        self.ui.deptText.clear()
+        self.ui.phoneText.clear()
+        self.ui.emailText.clear()
         self.ui.funcText.clear()
 
-
-    def draw_list(self):
+    def drawList(self):
         self.ui.contactList.clear()
         for contact in self.contacts:
             self.ui.contactList.addItem(

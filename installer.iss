@@ -26,15 +26,15 @@ Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\wrapper.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\MainWindow.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Adresseprinter"; Filename: "{app}\wrapper.exe"
+Name: "{group}\Adresseprinter"; Filename: "{app}\MainWindow.exe"
 Name: "{group}\{cm:UninstallProgram,Adresseprinter}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\Adresseprinter"; Filename: "{app}\wrapper.exe"; Tasks: desktopicon
+Name: "{commondesktop}\Adresseprinter"; Filename: "{app}\MainWindow.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\wrapper.exe"; Description: "{cm:LaunchProgram,Adresseprinter}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\MainWindow.exe"; Description: "{cm:LaunchProgram,Adresseprinter}"; Flags: nowait postinstall skipifsilent
 
