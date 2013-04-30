@@ -11,6 +11,6 @@ setup(
     name = "Adresseprinter",
     version = "0.4",
     description = "Adresseprinter",
-    options = {"build_exe" : {"include_files" : ["data/template.html", "data/gui.ui"]}},
+    options = {"build_exe" : {"include_files" : ["data/template.html", "data/gui.ui", "data/icon.ico", "imageformats/qico4.dll"]}},
     executables = [Executable(script="MainWindow.py", icon="data/icon.ico", base=base)]
     )
