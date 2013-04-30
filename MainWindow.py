@@ -24,7 +24,8 @@ class MainWindow(QtGui.QMainWindow):
 
         QtGui.QMainWindow.__init__(self, parent)
         self.ui = UiLoader.loadUi('data/gui.ui', self)
-        self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
+        self.statusText = QtGui.QLabel("PDF is saved in: \"" + self.dir + "\"")
+        self.ui.statusBar.addWidget(self.statusText, 1)
         self.ui.caseText.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp("\d*")))
         self.addSignals()
 
@@ -52,8 +53,9 @@ class MainWindow(QtGui.QMainWindow):
 
     def setPdfDir(self):
         self.dir = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
-        self.settings.setValue('pdf_dir', self.dir)
-        self.ui.statusBar.showMessage("PDF is saved in: \"" + self.dir + "\"")
+        if self.dir:
+            self.settings.setValue('pdf_dir', self.dir)
+            self.statusText.setText("PDF is saved in: \"" + self.dir + "\"")
 
     def printAddress(self):
         index = self.ui.contactList.currentRow()
