@@ -26,8 +26,8 @@ Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\MainWindow.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "\\admcifs02\users\chw752\Documents\Dropbox\adresseprinter\build\exe.win32-3.2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\exe.win32-3.2\MainWindow.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\exe.win32-3.2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
