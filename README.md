@@ -17,6 +17,7 @@ The program searches and prints addresses from the UCPH address book: http://www
 * [ ] Allow the use of alt-button to choose element
 * [ ] Run the GUI in a seperate thread to avoid freezing when searching
 * [ ] Possibly find a catchy name ;)
+* [ ] Add an empty entry in the dropdown menu for allowing no SD
 
 # Considerations
 * Port the code to use TKInter instead to avoid having to use PyQT
