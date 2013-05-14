@@ -23,3 +23,6 @@ The program searches and prints addresses from the UCPH address book: http://www
 * Port the code to use TKInter instead to avoid having to use PyQT
 * Clean up the way beautifulsoup is used and in general fix the dirty hacks in [AdressBook.py](https://github.com/jfrdev/adresseprinter/blob/master/AddressBook.py)
 * Move away from python completely and use C instead to improve performance (This is an entire project in itself)
+
+# License
+The program is released under the LGPL v3.0 http://opensource.org/licenses/LGPL-3.0
