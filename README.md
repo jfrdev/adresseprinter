@@ -25,4 +25,4 @@ The program searches and prints addresses from the UCPH address book: http://www
 * Move away from python completely and use C instead to improve performance (This is an entire project in itself)
 
 # License
-The program is released under the LGPL v3.0 http://opensource.org/licenses/LGPL-3.0
+The program is released under the MIT License http://opensource.org/licenses/MIT ([TL;DR explanation](http://www.tldrlegal.com/license/mit-license))
